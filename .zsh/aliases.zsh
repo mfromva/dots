@@ -28,8 +28,6 @@ alias dl='cd ~/Downloads'
 alias st='cd ~/storage'
 
 
-# vim and emacs
-alias vim="nvim"
 
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first' # my preferred listing
@@ -38,18 +36,16 @@ alias ll='exa -l --color=always --group-directories-first'  # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | egrep "^\."'
 
+
+# vim and emacs
+alias vim="nvim"
+
 # pacman and yay
 alias pacsyu='sudo aura -Syu'                 # update only standard pkgs
 alias aurup='sudo aura -Au --noconfirm'              # update only AUR pkgs (yay)
 alias asearch='sudo aura -As '             # update standard pkgs and AUR pkgs (yay)
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
-
-# get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -74,20 +70,6 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # Merge Xresources
 alias merge='xrdb -merge ~/.Xresources'
-
-# git
-alias addup='git add -u'
-alias addall='git add .'
-alias branch='git branch'
-alias checkout='git checkout'
-alias clone='git clone'
-alias commit='git commit -m'
-alias fetch='git fetch'
-alias pull='git pull origin'
-alias push='git push origin'
-alias stat='git status'  # 'status' is protected name so using 'stat' instead
-alias tag='git tag'
-alias newtag='git tag -a'
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

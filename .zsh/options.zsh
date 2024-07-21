@@ -77,5 +77,6 @@ bindkey '^[[Z' undo                                # shift + tab
 bindkey '^L' clear-screen                          # ctrl + l
 
 # Plugins
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh

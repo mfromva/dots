@@ -10,7 +10,8 @@ function run {
 
 
 #Autostart applications
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+~/.screenlayout/dual.sh &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 pkill -u $USER '^picom$'
 picom --config $HOME/.config/herbstluftwm/picom.conf &
 sxhkd -c ~/.config/herbstluftwm/sxhkd/sxhkdrc &
@@ -20,7 +21,7 @@ run synergy &
 wal -Rn
 flameshot &
 nm-applet &
-
+blueberry-tray
 
 
 # Enable Super Keys For Menu
@@ -216,7 +217,7 @@ done
 hc attr theme.active.outer_width 1
 hc attr theme.background_color '#141414'
 
-hc set window_gap 0
+hc set window_gap 5
 hc set frame_padding 0
 hc set smart_window_surroundings off
 hc set smart_frame_surroundings on
@@ -238,11 +239,8 @@ hc rule class=discord tag=13 focus=on switchtag=on
 hc rule class=Hexchat tag=13 switchtag=on focus=on
 hc rule class~'(Navigator|Mercury Browser|qutebrowser)' tag=2 switchtag=on pseudotile=on
 hc rule class~'(Subl|code|Code)' tag=3 switchtag=on focus=on pseudotile=on
-hc rule class=Emacs tag=15 focus=on
-hc rule class=GoogleKeep tag=5 focus=on
 hc rule class=vlc tag=6 focus=on switchtag=on
 hc rule class=Virt-manager tag=7 floating=on pseudotile=on
-hc rule class=GNS3 tag=7 switchtag=on focus=on
 hc rule class=Joplin tag=11 switchtag=on pseudotile=on
 hc rule class=koodo-reader tag=11 switchtag=on pseudotile=on
 hc rule class=qutebrowser tag=11 switchtag=on pseudotile=on
@@ -257,7 +255,6 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule windowrole=xfce4-terminal-dropdown floating=on
-hc rule class=dev.warp.Warp floating=on
 
 
 # unlock, just to be sure
@@ -266,7 +263,7 @@ hc unlock
 
 
 # do multi monitor setup here, e.g.:
-hc set_monitors 1920x1080
+hc detect_monitors
 hc pad 0 30
 hc pad 1 30
 

@@ -5,14 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+
 
 ### EXPORT
 export TERM="xterm-256color"                      # getting proper colors
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR="nvim"              # $EDITOR use Emacs in terminal
-export BROWSER="thorium-browser"
+
 
 ### PATH
 if [ -d "$HOME/.bin" ] ;
@@ -109,11 +109,9 @@ up () {
 eval "$(starship init zsh)"
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zsh/aliases.zsh
 source ~/.zsh/options.zsh
-source ~/.zsh/prompt.zsh
 
 # Autostart
 if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
@@ -126,8 +124,23 @@ if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
     fi
 fi
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# Shell-GPT integration ZSH v0.2
+_sgpt_zsh() {
+if [[ -n "$BUFFER" ]]; then
+    _sgpt_prev_cmd=$BUFFER
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd" --no-interaction)
+    zle end-of-line
+fi
+}
+zle -N _sgpt_zsh
+bindkey ^l _sgpt_zsh
+# Shell-GPT integration ZSH v0.2
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+eval "$(zoxide init zsh)"

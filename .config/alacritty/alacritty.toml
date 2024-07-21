@@ -1,0 +1,94 @@
+import = ["~/.config/alacritty/fonts.yml"]
+live_config_reload = true
+
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+blink_interval = 550
+unfocused_hollow = false
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
+
+
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+program = "/usr/bin/zsh"
+
+
+[window]
+opacity = 0.9
+
+[window.padding]
+x = 15
+y = 15
+# BEGIN WAL
+[colors.primary]
+background = '#040609'
+foreground = '#c3c7e1'
+
+[colors.cursor]
+text   = '#040609' # Apply background color to color of text inside cursor
+cursor = '#c3c7e1' # Apply foreground color to color of cursor
+
+[colors.vi_mode_cursor]
+text    = '#040609' # Same as above
+cursor  = '#c3c7e1'
+
+[colors.search.matches]
+foreground = '#040609' # Same as above
+background = '#c3c7e1' # Apply bright/white color to bg color of matching search
+
+[colors.search.focused_match]
+foreground = 'CellBackground'
+background = 'CellForeground'
+
+[colors.line_indicator]
+foreground = 'None'
+background = 'None'
+
+[colors.footer_bar]
+foreground = '#888b9d'
+background = '#c3c7e1'
+
+[colors.selection]
+text       = 'CellBackground'
+background = 'CellForeground'
+
+[colors.normal]
+black   = '#040609'
+red     = '#586B9E'
+green   = '#8D759E'
+yellow  = '#448B88'
+blue    = '#658BAC'
+magenta = '#7790C6'
+cyan    = '#9E91B0'
+white   = '#c3c7e1'
+
+[colors.bright]
+black   = '#888b9d'
+red     = '#586B9E'
+green   = '#8D759E'
+yellow  = '#448B88'
+blue    = '#658BAC'
+magenta = '#7790C6'
+cyan    = '#9E91B0'
+white   = '#c3c7e1'
+# END WAL
