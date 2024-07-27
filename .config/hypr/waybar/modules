@@ -18,28 +18,6 @@
     "on-scroll-down": "~/.config/hypr/scripts/brightness --dec",
     "smooth-scrolling-threshold": 1,
   },
-  "wlr/workspaces-cn": {
-    "format": "{icon}",
-    "on-click": "activate",
-    "all-outputs": true,
-    "sort-by-number": true,
-    "format-icons": {
-      "1": "一",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "十",
-      "focused": "",
-      "default": ""
-    },
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
-  },
   "wlr/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
@@ -61,24 +39,24 @@
     },
   },
   "hyprland/workspaces": {
-    "format": "{icon}",
-    "on-click": "activate",
-    "all-outputs": true,
-    "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10",
-      "urgent": "",
-      "default": ""
-    },
-    "sort-by-number": true
+  "format": "{icon}",
+  "on-click": "activate",
+  "DP-1": {
+    "names": [1,2,3,4,5,6,7,8,9,10],
+    "icons": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "active-icon": "",
+    "default-icon": "",
+    "empty-icon": ""
+  },
+  "HDMI-A-1": {
+    "names": [11,12,13,14,15,16,17,18,19,20],
+    "icons": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "active-icon": "",
+    "default-icon": "",
+    "empty-icon": ""
+  },
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
   "battery": {
     "interval": 60,
