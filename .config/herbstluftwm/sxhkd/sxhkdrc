@@ -1,0 +1,121 @@
+
+
+# Rofi Launcher
+Menu
+    scratchpad
+
+alt + F1
+    poly-menu
+#########################
+# SUPER + ... KEYS      #
+#########################
+
+    
+# Terminal
+super + Return
+    alacritty
+
+# code
+super + c
+    code
+
+# scratchpad
+super + d
+    ~/.local/bin/dmenu
+
+#reload sxhkd:
+super + Escape
+    pkill -USR1 -x sxhkd
+
+#########################
+# SUPER + SHIFT KEYS    #
+#########################
+
+#File-Manager
+super + shift + Return
+	thunar
+   
+
+super + shift + x
+    archlinux-logout    
+
+super + shift + y
+    yt
+
+
+
+
+
+#########################
+# CONTROL + ALT KEYS    #
+#########################
+
+#code
+ctrl + alt + w
+     code
+
+
+
+#xfce4-terminal dropdown
+F12
+    xfce4-terminal --drop-down    
+
+
+#########################
+#     MULTIMEDIA KEYS   #
+#########################
+
+#Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 10%+
+
+#Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 10%-
+
+#Mute
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+#Playerctl works for Pragha, Spotify and others
+#DELETE the line for mpc if you want to use playerctl
+#putting a hashtag in front of the mpc line will NOT work
+#mpc works for ncmpcpp
+
+#PLAY
+XF86AudioPlay
+    #mpc toggle
+    playerctl play-pause
+
+#Next
+XF86AudioNext
+     #mpc next
+     playerctl next
+
+#previous
+XF86AudioPrev
+    #mpc prev
+    playerctl previous
+
+#Stop
+XF86AudioStop
+    #mpc stop
+    playerctl stop
+
+#Brightness up
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+#Brightness down
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+
+#########################
+#        POLYBAR        #
+#########################
+
+#Hide polybar
+super + y
+    polybar-msg cmd toggle
+

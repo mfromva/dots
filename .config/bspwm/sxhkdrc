@@ -1,0 +1,184 @@
+
+# Rofi Launcher
+Menu
+    scratchpad
+
+alt + F1
+    poly-menu
+#########################
+# SUPER + ... KEYS      #
+#########################
+
+    
+# Terminal
+super + Return
+    alacritty
+
+# code
+super + c
+    code
+
+# scratchpad
+super + d
+    ~/.local/bin/dmenu
+
+#reload sxhkd:
+super + Escape
+    pkill -USR1 -x sxhkd
+
+#########################
+# SUPER + SHIFT KEYS    #
+#########################
+
+#File-Manager
+super + shift + Return
+	thunar
+   
+
+super + shift + x
+    archlinux-logout    
+
+super + shift + y
+    yt
+
+
+
+
+
+#########################
+# CONTROL + ALT KEYS    #
+#########################
+
+#code
+ctrl + alt + w
+     code
+
+
+
+#xfce4-terminal dropdown
+F12
+    xfce4-terminal --drop-down    
+
+
+#########################
+#     MULTIMEDIA KEYS   #
+#########################
+
+# Open browser
+super + w
+	firefox
+	#/usr/bin/distrobx-enter -n Arch --  /usr/bin/vivaldi-stable
+
+
+# Make screenshot
+ctrl + alt + s
+	flameshot gui
+
+#Audio Keybindings
+
+alt + d
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+alt + a
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+alt + {h,j,k,l}
+   mpc {prev,next,play,pause}
+
+# Dunst mute/unmute
+super + m
+	{dunstctl set-paused true && polybar-msg hook dunst 2, \
+	 dunstctl set-paused false && polybar-msg hook dunst 1}
+
+# Dunst history
+super + shift + d
+	{dunst_hist display-history, dunst_hist close-history}
+
+
+super + m
+    scratchpad Music
+
+super + c
+    scratchpad ranger
+
+super + v
+    scratchpad pulse
+
+
+
+# Close/kill focus app
+super + {q, shift + q}
+	bspc node -{c,k}
+
+# Reload sxhkd config
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Reload bspwm config
+super + shift + r
+	bspc wm -r
+
+#Logout
+super + shift + x
+	archlinux-logout
+
+# Set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Focus/swap windows by direction
+super + {_,shift + }{h,j,k,l}
+	bspc node --{focus,swap} {west,south,north,east}
+
+# Focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# Focus/send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Preselect the direction
+super + alt + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# Cancel the preselection for the focused node
+super + alt + space
+	bspc node -p cancel 
+
+# Move current window to a pre-selected space
+super + alt + m
+	bspc node -n last.!automatic
+
+# Show help
+super + shift + s
+	sxhkd_help
+
+# Resize tiling windows
+super + ctrl + {Left,Down,Up,Right}
+	{bspc node -z left -20 0; bspc node -z right -20 0, \
+	bspc node -z bottom 0 20; bspc node -z top 0 20, \
+	bspc node -z bottom 0 -20; bspc node -z top 0 -20, \ 
+	bspc node -z left 20 0; bspc node -z right 20 0}
+
+
+# Resize floating windows
+alt + ctrl + {Left,Down,Up,Right}
+	bspc node -z {right -20 20, bottom 20 20, bottom 20 -20, right 20 20}
+
+# move floating windows 
+alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + {equal, minus, 0}
+	gaps {+, -, =}
+
+super + ctrl + {equal, minus, 0}
+	borders {+, -, =}
+
+alt + {Left,Right}
+	bspc node -m {next,prev} --follow && \
+	bspc query -M | while read -r monitor; do \
+	    bspc query -D -m "$monitor" --names | sort -g | xargs -rd'\n' bspc monitor "$monitor" -o; \
+	done
+

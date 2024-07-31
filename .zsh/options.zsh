@@ -79,4 +79,4 @@ bindkey '^L' clear-screen                          # ctrl + l
 # Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+#source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh

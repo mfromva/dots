@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+case "$1" in
+
+	mysp) 		
+        entry="alacritty --class mysp -T mysp" 		
+        ;;	
+    scp2) 		
+        entry="alacritty --class scp2 -T scp2" 		
+        ;;
+	pulse) 		
+        entry="alacritty --class pulse -T pulse -e pulsemixer"		
+        ;;
+    ranger)
+        entry="alacritty --class ranger -T ranger -e ranger"
+        ;;
+    music)
+        entry="alacritty --class music -T music -e flatpak run io.github.hrkfdn.ncspot"
+        ;;
+    news)
+        entry="alacritty --class news -T news -e newsboat"
+        ;;
+esac
+
+xdotool search --onlyvisible --classname "$1" windowunmap \
+    || xdotool search --classname "$1" windowmap \
+    || $entry &
+
+

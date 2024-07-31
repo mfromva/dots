@@ -31,6 +31,12 @@ if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
 
+if [ -d "$HOME/.cargo/bin" ] ;
+  then PATH="$HOME/.cargo/bin:$PATH"	
+fi
+
+
+
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
   xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
@@ -137,10 +143,23 @@ fi
 zle -N _sgpt_zsh
 bindkey ^l _sgpt_zsh
 # Shell-GPT integration ZSH v0.2
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 
 
 eval "$(zoxide init zsh)"
+
+# -----------------------------------------------------
+# Fastfetch if on wm
+# -----------------------------------------------------
+if [[ $(tty) == *"pts"* ]]; then
+    fastfetch --config examples/13
+else
+    echo
+    if [ -f /bin/qtile ]; then
+        echo "Start Qtile X11 with command Qtile"
+    fi
+    if [ -f /bin/hyprctl ]; then
+        echo "Start Hyprland with command Hyprland"
+    fi
+fi

@@ -193,3 +193,18 @@ alias adt="arcolinux-desktop-trasher"
 eval "$(starship init bash)"
 
 eval "$(zoxide init bash)"
+
+# -----------------------------------------------------
+# Fastfetch if on wm
+# -----------------------------------------------------
+if [[ $(tty) == *"pts"* ]]; then
+    fastfetch --config examples/13
+else
+    echo
+    if [ -f /bin/qtile ]; then
+        echo "Start Qtile X11 with command Qtile"
+    fi
+    if [ -f /bin/hyprctl ]; then
+        echo "Start Hyprland with command Hyprland"
+    fi
+fi

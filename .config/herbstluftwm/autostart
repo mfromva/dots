@@ -10,18 +10,17 @@ function run {
 
 
 #Autostart applications
-~/.screenlayout/dual.sh &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 pkill -u $USER '^picom$'
 picom --config $HOME/.config/herbstluftwm/picom.conf &
 sxhkd -c ~/.config/herbstluftwm/sxhkd/sxhkdrc &
 numlockx on &
-nitrogen --restore &
+changewallpaper &
 run synergy &
-wal -Rn
 flameshot &
 nm-applet &
-blueberry-tray
+blueman-applet &
+dunst &
 
 
 # Enable Super Keys For Menu
@@ -43,7 +42,6 @@ hc emit_hook reload
 # remove all existing keybindings
 hc keyunbind --all
 
-# if you have a super key you will be much happier with Mod set to Mod4
 Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-x quit
@@ -101,47 +99,44 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 
+# focus on ...
+hc keybind $Mod-Up   cycle_monitor
+hc keybind $Mod-Tab         cycle
+hc keybind $Mod1-Tab   use_index +1 --skip-visible
+hc keybind $Mod-i jumpto urgent
 
 
-# TAGS or WORKSPACES
-# Names to display in the menu
-tag_names=( {1..15} )
 
-# Keys for tag bindings
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+
+
+
+tag_names=( {1..10} )
+#tag_names=("Web" "Chat" "Edit" "Meld" "Vb" "Mail" "Video" "Image" "Files" "Music")
+#tag_names=("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
+
+#keys to press to get to the tags
+#Qwerty
 tag_keys=( {1..9} 0 )
 
-# Use `hc rename` to set the default workspace name
-hc rename default "${tag_names[0]}" || true
 
-# Loop to add workspaces and set key bindings
+hc rename default "${tag_names[0]}" || true
 for i in ${!tag_names[@]} ; do
     hc add "${tag_names[$i]}"
+    # horizontal tiling as standard
     hc set_layout horizontal
     hc set default_frame_layout 1
-
     key="${tag_keys[$i]}"
     if ! [ -z "$key" ] ; then
         hc keybind "$Mod-$key" use_index "$i"
         hc keybind "$Mod-Shift-$key" chain , move_index "$i" , use_index "$i"
     fi
-
-    # For workspaces 11-15, use keys g, h, j, k, l
-    if [ "$i" -ge 10 ]; then
-        case $i in
-            10) hc keybind "Mod1-g" use_index "$i"
-                hc keybind "Mod1-Shift-g" chain , move_index "$i" , use_index "$i" ;;
-            11) hc keybind "Mod1-h" use_index "$i"
-                hc keybind "Mod1-Shift-h" chain , move_index "$i" , use_index "$i" ;;
-            12) hc keybind "Mod1-j" use_index "$i"
-                hc keybind "Mod1-Shift-j" chain , move_index "$i" , use_index "$i" ;;
-            13) hc keybind "Mod1-k" use_index "$i"
-                hc keybind "Mod1-Shift-k" chain , move_index "$i" , use_index "$i" ;;
-            14) hc keybind "Mod1-l" use_index "$i"
-                hc keybind "Mod1-Shift-l" chain , move_index "$i" , use_index "$i" ;;
-        esac
-    fi
 done
-
 
 
 # layouting
@@ -156,76 +151,42 @@ hc keybind $Mod-space                                                           
                      . cycle_layout +1 vertical horizontal max grid    \
                , cycle_layout +1
 
-# mouse
-hc mouseunbind --all
-hc mousebind $Mod-Button1 move
-hc mousebind $Mod-Button2 zoom
-hc mousebind $Mod-Button3 resize
 
-# focus on ...
-hc keybind $Mod-BackSpace   cycle_monitor
-hc keybind $Mod-Tab         use_index +1 --skip-visible
-hc keybind $Mod-Shift-Tab   use_index -1 --skip-visible
-hc keybind Control-Mod1-Left    focus left
-hc keybind Control-Mod1-Up      focus up
-hc keybind Control-Mod1-Right   focus right
-hc keybind Control-Mod1-Down    focus down
-hc keybind Mod1-Tab         use_index +1 --skip-visible
-hc keybind Mod1-Shift-Tab   use_index -1 --skip-visible
-hc keybind $Mod-a cycle
-hc keybind $Mod-i jumpto urgent
-
-## Theme -----------------------------------------------------#
 
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#F9F9FBcc'
-hc set frame_border_normal_color '#D2D8E0cc'
-hc set frame_bg_normal_color '#9DA3AEaa'
-hc set frame_bg_active_color '#9DA3AEaa'
-hc set frame_border_width 1
-hc set always_show_frame on
-hc set frame_bg_transparent on
-hc set frame_transparent_width 0
-hc set frame_gap 7
-
-hc attr theme.title_height 12
-hc attr theme.title_font 'Dejavu Sans:pixelsize=0
-o'  # example using Xft
-# hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
-hc attr theme.padding_top 2  # space below the title's baseline (i.e. text depth)
-hc attr theme.active.color '#F9F9FBfc'
-hc attr theme.title_color '#ffffff'
-hc attr theme.normal.color '#D2D8E0fc'
-hc attr theme.urgent.color '#C7BBC2fc'
-hc attr theme.normal.title_color '#D3DAE2'
-hc attr theme.inner_width 0
-hc attr theme.inner_color black
-hc attr theme.border_width 0
-hc attr theme.floating.border_width 0
-hc attr theme.floating.outer_width 0
-hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#FFFFFF'
-hc attr theme.urgent.inner_color '#C7BBC2'
-hc attr theme.normal.inner_color '#D3DAE2'
-# copy inner color to outer_color
-for state in active urgent normal ; do
-    hc substitute C theme.${state}.inner_color \
-        attr theme.${state}.outer_color C
-done
-hc attr theme.active.outer_width 1
-hc attr theme.background_color '#141414'
-
-hc set window_gap 5
-hc set frame_padding 0
-hc set smart_window_surroundings off
-hc set smart_frame_surroundings on
-hc set mouse_recenter_gap 0
-hc set frame_bg_transparent 0
+hc set frame_border_active_color '#ef6b7b'
+hc set frame_border_normal_color '#4ec2e8'
+#hc set frame_bg_normal_color '#2f343f'
+#hc set frame_bg_active_color '#2f343f'
+hc set frame_active_opacity 20
 hc set frame_normal_opacity 0
-hc keybind $Mod-b cycle_value frame_normal_opacity 0 40
+hc set frame_bg_transparent 0
+#hc set frame_transparent_width 0
+hc set frame_gap 8
+hc set frame_padding 0
+hc set frame_border_width 2
 
+hc attr theme.active.color '#ef6b7b'
+hc attr theme.normal.color '#2f343f'
+hc attr theme.urgent.color '#f59335'
+#hc attr theme.background_color '#2f343f'
+#hc attr theme.inner_color black
+hc attr theme.floating.outer_color '#a1d569'
+#hc attr theme.active.inner_color '#a1d569'
+#hc attr theme.active.outer_color '#a1d569'
+hc attr theme.border_width 2
+hc attr theme.floating.border_width 2
+hc attr theme.floating.outer_width 0
+hc attr theme.inner_width 0
+
+hc set always_show_frame 0
+hc set window_gap 8
+hc set smart_window_surroundings 1
+hc set smart_frame_surroundings 1
+hc set mouse_recenter_gap 0
+hc set focus_follows_mouse 1
 
 
 
@@ -235,15 +196,15 @@ hc rule focus=on # normally focus new clients
 
 
 #assign applications to workspaces or tags
-hc rule class=discord tag=13 focus=on switchtag=on
-hc rule class=Hexchat tag=13 switchtag=on focus=on
+hc rule class=discord tag=10 focus=on switchtag=on
+hc rule class=Hexchat tag=10 switchtag=on focus=on
 hc rule class~'(Navigator|Mercury Browser|qutebrowser)' tag=2 switchtag=on pseudotile=on
 hc rule class~'(Subl|code|Code)' tag=3 switchtag=on focus=on pseudotile=on
 hc rule class=vlc tag=6 focus=on switchtag=on
 hc rule class=Virt-manager tag=7 floating=on pseudotile=on
-hc rule class=Joplin tag=11 switchtag=on pseudotile=on
-hc rule class=koodo-reader tag=11 switchtag=on pseudotile=on
-hc rule class=qutebrowser tag=11 switchtag=on pseudotile=on
+hc rule class=Joplin tag=8 switchtag=on pseudotile=on
+hc rule class=koodo-reader tag=8 switchtag=on pseudotile=on
+hc rule class=qutebrowser tag=2 switchtag=on pseudotile=on
 
 
 
@@ -275,4 +236,3 @@ hc rule floatplacement=smart
 
 #launching polybar
 ~/.config/herbstluftwm/panel.sh
-

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIR=$HOME/Pictures/bg
+random_wallpaper=$(find $DIR -type f | sort -R | head -1)
+
+feh --bg-fill $random_wallpaper &
+wal -i $random_wallpaper &
+notify-send "$random_wallpaper" &
+sleep .3
+pylacritty &
