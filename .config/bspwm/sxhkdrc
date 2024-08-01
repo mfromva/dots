@@ -104,7 +104,16 @@ super + c
 super + v
     scratchpad pulse
 
+########################
+KP_Add
+	brightnessctl s 10+
 
+KP_Subtract
+	brightnessctl s 10-	
+
+
+
+#######################
 
 # Close/kill focus app
 super + {q, shift + q}
@@ -182,3 +191,9 @@ alt + {Left,Right}
 	    bspc query -D -m "$monitor" --names | sort -g | xargs -rd'\n' bspc monitor "$monitor" -o; \
 	done
 
+
+alt + {Up,Down}
+	bspc monitor --focus {next,prev} --follow && \
+	bspc query -M | while read -r monitor; do \
+	    bspc query -D -m "$monitor" --names | sort -g | xargs -rd'\n' bspc monitor "$monitor" -o; \
+	done

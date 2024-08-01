@@ -21,6 +21,7 @@ flameshot &
 nm-applet &
 blueman-applet &
 dunst &
+run macchatgpt &
 
 
 # Enable Super Keys For Menu
