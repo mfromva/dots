@@ -6,12 +6,13 @@ myEdit=nvim
 menu(){
 	printf "1. Alacritty\n"
 	printf "2. Herbstluftwm\n"
-	printf "3. Sxhkd\n"
+	printf "3. Herb-bindings\n"
 	printf "4. Bspwm\n"
-	printf "5. Polybar\n"
+	printf "5. Bspwm-bindings\n"
 	printf "6. Shell_GPT\n"
 	printf "7. .bashrc\n"
 	printf "8. .zshrc\n"
+    printf "9. Polybar\n"
 }
 
 main(){
@@ -28,20 +29,24 @@ main(){
 			$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/herbstluftwm/sxhkd/sxhkdrc"
             ;;
 		4)
-           	$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/bspwm/bspwmrc"
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/bspwm/bspwmrc"
             ;;
 		5)
-            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/polybar/config.ini"
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/bspwm/sxhkdrc"
             ;;
 		6)
             $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/shell_gpt/.sgptrc"
             ;;
 		7)
-           	$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.bashrc"
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.bashrc"
             ;;
 		8)
             $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.zshrc"
             ;;
+        9)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/polybar/config.ini"
+            ;;
+
 
         esac
 }

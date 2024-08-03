@@ -197,3 +197,17 @@ alt + {Up,Down}
 	bspc query -M | while read -r monitor; do \
 	    bspc query -D -m "$monitor" --names | sort -g | xargs -rd'\n' bspc monitor "$monitor" -o; \
 	done
+
+
+
+# emacs (SUPER + e followed by another key)
+super + e; e
+    emacsclient -c -a 'emacs'
+super + e; b
+    emacsclient -c -a 'emacs' --eval '(ibuffer)'
+super + e; d
+    emacsclient -c -a 'emacs' --eval '(dired nil)'
+super + e; s
+    emacsclient -c -a 'emacs' --eval '(eshell)'
+super + e; v
+    emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'

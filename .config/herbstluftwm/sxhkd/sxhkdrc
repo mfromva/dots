@@ -1,62 +1,52 @@
 
 
-# Rofi Launcher
-Menu
-    scratchpad
-
 alt + F1
-    poly-menu
+    rofi -show drun
+
 #########################
 # SUPER + ... KEYS      #
 #########################
-
-    
-# Terminal
 super + Return
     alacritty
-
-# code
 super + c
     code
-
-# scratchpad
-super + d
-    ~/.local/bin/dmenu
-
-#reload sxhkd:
 super + Escape
     pkill -USR1 -x sxhkd
+
 
 #########################
 # SUPER + SHIFT KEYS    #
 #########################
 
-#File-Manager
 super + shift + Return
-	thunar
-   
-
+    thunar
 super + shift + x
     archlinux-logout    
-
 super + shift + y
     yt
 
 
+####################
+# Alt Shift        #
+# ##################
+alt + shift + Return
+    ~/.local/bin/rofi-edit
+alt + s
+    ~/.local/bin/scratchpad    
 
 
-
-#########################
-# CONTROL + ALT KEYS    #
-#########################
-
-#code
+#####################
+# Ctrl Alt Keys     #
+#####################
 ctrl + alt + w
      code
 
+#####################
+# Function Keys 
+#
+#
+#####################
 
-
-#xfce4-terminal dropdown
 F12
     xfce4-terminal --drop-down    
 
@@ -65,15 +55,12 @@ F12
 #     MULTIMEDIA KEYS   #
 #########################
 
-#Raises volume
 XF86AudioRaiseVolume
     amixer set Master 10%+
 
-#Lowers volume
 XF86AudioLowerVolume
     amixer set Master 10%-
 
-#Mute
 XF86AudioMute
     amixer -D pulse set Master 1+ toggle
 
@@ -93,7 +80,7 @@ XF86AudioNext
      playerctl next
 
 #previous
-XF86AudioPrev
+XF86AudioPrev 
     #mpc prev
     playerctl previous
 
@@ -115,7 +102,18 @@ XF86MonBrightnessDown
 #        POLYBAR        #
 #########################
 
-#Hide polybar
 super + y
     polybar-msg cmd toggle
 
+
+# Emacs #
+super + e; e
+    emacsclient -c -a 'emacs'
+super + e; b
+    emacsclient -c -a 'emacs' --eval '(ibuffer)'
+super + e; d
+    emacsclient -c -a 'emacs' --eval '(dired nil)'
+super + e; s
+    emacsclient -c -a 'emacs' --eval '(eshell)'
+super + e; v
+    emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'

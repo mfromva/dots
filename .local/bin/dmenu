@@ -1,6 +1,0 @@
-#!/bin/bash
-# Import the colors
-. "${HOME}/.cache/wal/colors.sh"
-
-exec dmenu_run -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color15" -fn 'Bitstream Vera Sans:style=Roman:pixelsize=14'
-

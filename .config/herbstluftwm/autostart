@@ -11,18 +11,15 @@ function run {
 
 #Autostart applications
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-pkill -u $USER '^picom$'
-picom --config $HOME/.config/herbstluftwm/picom.conf &
 sxhkd -c ~/.config/herbstluftwm/sxhkd/sxhkdrc &
 numlockx on &
-changewallpaper &
 run synergy &
 flameshot &
 nm-applet &
-blueman-applet &
 dunst &
-run macchatgpt &
-
+picom &
+~/.local/bin/changewallpaper &
+/usr/bin/emacs --daemon &
 
 # Enable Super Keys For Menu
 ksuperkey -e 'Super_L=Alt_L|F1' &
@@ -197,16 +194,11 @@ hc rule focus=on # normally focus new clients
 
 
 #assign applications to workspaces or tags
-hc rule class=discord tag=10 focus=on switchtag=on
-hc rule class=Hexchat tag=10 switchtag=on focus=on
-hc rule class~'(Navigator|Mercury Browser|qutebrowser)' tag=2 switchtag=on pseudotile=on
-hc rule class~'(Subl|code|Code)' tag=3 switchtag=on focus=on pseudotile=on
-hc rule class=vlc tag=6 focus=on switchtag=on
+hc rule class~'(Navigator|Mercury Browser|qutebrowser|Firefox)' tag=2 switchtag=on pseudotile=on focus=on
+hc rule class~'(Subl|code|Code|Emacs)' tag=3 switchtag=on focus=on pseudotile=on
 hc rule class=Virt-manager tag=7 floating=on pseudotile=on
-hc rule class=Joplin tag=8 switchtag=on pseudotile=on
-hc rule class=koodo-reader tag=8 switchtag=on pseudotile=on
-hc rule class=qutebrowser tag=2 switchtag=on pseudotile=on
-
+hc rule class~'(Joplin|kood-reader)' tag=8  switchtag=on pseudotile=on
+hc rule class~'(discord|Hexchat)' tag=10 switchtag=on focus=on
 
 
 
@@ -225,7 +217,9 @@ hc unlock
 
 
 # do multi monitor setup here, e.g.:
-hc detect_monitors
+herbstclient detect_monitors
+hc set focus_crosses_monitor_boundaries 1
+hc set swap_monitors_to_get_tag 7
 hc pad 0 30
 hc pad 1 30
 
