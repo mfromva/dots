@@ -108,45 +108,17 @@ up () {
 }
 
 
-### SETTING THE STARSHIP PROMPT ###
-eval "$(starship init zsh)"
-
-
-
-source ~/.zsh/aliases.zsh
-source ~/.zsh/options.zsh
-
-# Autostart
+### ssh-agent
 if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
     eval $(ssh-agent -s) > /dev/null
     if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
         # Auto-add ssh keys to your ssh agent
         # Example:
          ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
-	       ssh-add ~/.ssh/ansible > /dev/null 2>&1
     fi
 fi
 
-# Shell-GPT integration ZSH v0.2
-_sgpt_zsh() {
-if [[ -n "$BUFFER" ]]; then
-    _sgpt_prev_cmd=$BUFFER
-    BUFFER+="⌛"
-    zle -I && zle redisplay
-    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd" --no-interaction)
-    zle end-of-line
-fi
-}
 
-zle -N _sgpt_zsh
-bindkey ^l _sgpt_zsh
-# Shell-GPT integration ZSH v0.2
-
-
-bindkey -v
-
-
-eval "$(zoxide init zsh)"
 
 # -----------------------------------------------------
 # Fastfetch if on wm
@@ -162,3 +134,28 @@ else
         echo "Start Hyprland with command Hyprland"
     fi
 fi
+
+
+
+
+
+# Shell-GPT integration ZSH v0.2
+_sgpt_zsh() {
+if [[ -n "$BUFFER" ]]; then
+    _sgpt_prev_cmd=$BUFFER
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd" --no-interaction)
+    zle end-of-line
+fi
+}
+zle -N _sgpt_zsh
+bindkey ^l _sgpt_zsh
+# Shell-GPT integration ZSH v0.2
+
+
+eval "$(zoxide init zsh)"
+source <(fzf --zsh)
+eval "$(starship init zsh)"
+source ~/.zsh/aliases.zsh
+source ~/.zsh/options.zsh

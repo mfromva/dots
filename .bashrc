@@ -111,11 +111,7 @@ alias conf='cd ~/.config'
 alias home='cd ~'
 alias dl='cd ~/Downloads'
 alias st='cd ~/storage'
-
-
-# vim and emacs
-alias vim="nvim"
-alias em="emacsclient -t -a ''"
+alias psh='pwsh'
 
 # Changing "ls" to "exa"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
@@ -161,9 +157,12 @@ alias merge='xrdb -merge ~/.Xresources'
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
+# vim and emacs
+alias vim="nvim"
 alias emacs="emacsclient -c -a 'emacs'" # GUI versions of Emacs
 alias em="/usr/bin/emacs -nw" # Terminal version of Emacs
 alias rem="killall emacs || echo 'Emacs server not running'; /usr/bin/emacs --daemon" # Kill Emacs and restart daemon..
+
 
 
 # youtube-dlp
@@ -193,7 +192,6 @@ alias adt="arcolinux-desktop-trasher"
 
 
 
-### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init bash)"
 
 eval "$(zoxide init bash)"

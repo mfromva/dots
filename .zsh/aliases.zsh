@@ -26,25 +26,29 @@ alias conf='cd ~/.config'
 alias home='cd ~'
 alias dl='cd ~/Downloads'
 alias st='cd ~/storage'
-alias pw='pwsh'
+alias psh='pwsh'
 
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
-alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first --icons'  # long format
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
-alias l.='exa -a | egrep "^\."'
+alias ls='eza -al --color=always --group-directories-first --icons' # my preferred listing
+alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+alias l.='eza -a | egrep "^\."'
 
 
 # vim and emacs
-alias vim="nvim"
+alias vim="/usr/bin/emacs -nw"
+alias emacs="emacsclient -c -a 'emacs'" # GUI versions of Emacs
+alias em="/usr/bin/emacs -nw" # Terminal version of Emacs
+alias rem="killall emacs || echo 'Emacs server not running'; /usr/bin/emacs --daemon" # Kill Emacs and restart daemon..
 
 # pacman and yay
-alias pacsyu='sudo aura -Syu'                 # update only standard pkgs
-alias aurup='sudo aura -Au --noconfirm'              # update only AUR pkgs (yay)
-alias asearch='sudo aura -As '             # update standard pkgs and AUR pkgs (yay)
+alias pup='sudo pacman -Syyu'                 # update only standard pkgs
+alias aup='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
+alias update='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
+
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -59,6 +63,7 @@ alias rm='rm -i'
 # adding flags
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
+
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
@@ -78,8 +83,12 @@ alias jctl="journalctl -p 3 -xb"
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+
+
 # ssh-agent
 alias agent='eval $(ssh-agent) && ssh-add'
+
+
 # youtube-dlp
 alias yta-aac="yt-dlp --extract-audio --audio-format aac "
 alias yta-best="yt-dlp --extract-audio --audio-format best "
@@ -89,7 +98,6 @@ alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+besta
 alias ytv-main="yt-dlp -f 137+140 "
 
 # switch between shells
-# I do not recommend switching default SHELL from bash.
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 
@@ -107,32 +115,11 @@ alias att="archlinux-tweak-tool"
 alias adt="archlinux-desktop-trasher"
 
 
-alias nlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
-alias npacman="sudo $EDITOR /etc/pacman.conf"
-alias ngrub="sudo $EDITOR /etc/default/grub"
-alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
-alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
-alias nmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
-alias narcomirrorlist='sudo nano /etc/pacman.d/arcolinux-mirrorlist'
-alias nsddm="sudo $EDITOR /etc/sddm.conf"
-alias nfstab="sudo $EDITOR /etc/fstab"
-alias nnsswitch="sudo $EDITOR /etc/nsswitch.conf"
-alias nsamba="sudo $EDITOR /etc/samba/smb.conf"
-alias ngnupgconf="sudo $EDITOR /etc/pacman.d/gnupg/gpg.conf"
-alias nb="$EDITOR ~/.bashrc"
-alias nz="$EDITOR ~/.zshrc"
-
-#switch between lightdm and sddm
-alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
-alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
-
 #remove
 alias rmgitcache="rm -r ~/.cache/git"
 
-#moving your personal files and folders from /personal to ~
-alias personal='cp -Rf /personal/* ~'
 
-
+# Full history for zsh
 alias fh="history 1"
 
 GLOBALIAS_FILTER_VALUES=(

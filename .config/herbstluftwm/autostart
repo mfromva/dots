@@ -20,6 +20,7 @@ dunst &
 picom &
 ~/.local/bin/changewallpaper &
 /usr/bin/emacs --daemon &
+blueman-applet &
 
 # Enable Super Keys For Menu
 ksuperkey -e 'Super_L=Alt_L|F1' &
@@ -47,9 +48,8 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q close
 hc keybind $Mod-q close
 
-
-#reload sxhkd:
-hc keybind $Mod-Shift-s  pkill -USR1 -x sxhkd
+herbstclient keybind Mod1-Control-i spawn ~/.local/bin/up
+herbstclient keybind Mod1-Control-d spawn ~/.local/bin/down
 
 # MOVEMENTS
 
